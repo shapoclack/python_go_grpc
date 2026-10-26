@@ -1,0 +1,9 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.log
+*.tmp
+server_bin
+cookies.txt
+db.sqlite3

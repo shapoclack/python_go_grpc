@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🎲 Dice Game (gRPC & mTLS)</title>
+  <style>
+    html {
+      line-height: 1.15;
+    }
+    body {
+      max-width: 960px;
+      color: #525252;
+      font-family: sans-serif;
+      margin: 40px auto;
+      font-size: x-large;
+      background: #f7f9fc;
+    }
+    main {
+      text-align: center;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .dice {
+      font-size: 72px;
+      margin: 20px 0;
+    }
+    button {
+      font-size: 20px;
+      padding: 12px 30px;
+      background: #0066cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #004c99;
+    }
+    .badges {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      history.replaceState("", "", "/");
+    }
+    document.head.appendChild(Object.assign(document.createElement("link"),{rel: "icon", href: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎲</text></svg>"}));
+  </script>
+</head>
+<body>
+  <main>
+    <h2>🎲 gRPC + mTLS Dice Game 🎲</h2>
+    <p>gRPC Direct (8443) vs Nginx Proxy (9445/9448)</p>
+    <div class="dice">{{ icon_a }} {{ sign }} {{ icon_b }}</div>
+    <form method="POST">
+      {% csrf_token %}
+      <button type="submit">Roll it!</button>
+    </form>
+    <div class="badges">
+      <span>Service A: Go gRPC (mTLS)</span> | <span>Service B: Nginx Reverse Proxy (mTLS -> h2c)</span>
+    </div>
+  </main>
+</body>
+</html>
